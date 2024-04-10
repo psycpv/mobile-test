@@ -1,0 +1,125 @@
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-ThinItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Extralight.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-ExtralightItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Light.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-LightItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Regular.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Italic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer-Black';
+  src: url('/static/fonts/Switzer-Black.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer-Black';
+  src: url('/static/fonts/Switzer-BlackItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Medium.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-MediumItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Semibold.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-SemiboldItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Bold.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-BoldItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-Extrabold.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-ExtraboldItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/static/fonts/Switzer-ExtraboldItalic.ttf') format('truetype'); /* Update the path accordingly */
+  font-weight: 800;
+  font-style: italic;
+}

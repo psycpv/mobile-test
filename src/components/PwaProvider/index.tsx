@@ -12,10 +12,6 @@ export default function PwaProvider({ children }: { children: ReactNode }) {
   const setIsInstalledPWA = useSetIsInstalledPWA()
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
-    console.log(
-      ('standalone' in window.navigator && window.navigator['standalone'] === true) ||
-        window.matchMedia('(display-mode: standalone)').matches
-    )
     toast.success(<PwaInstallCard />, {
       icon: false,
       closeButton: false,
@@ -24,10 +20,8 @@ export default function PwaProvider({ children }: { children: ReactNode }) {
       bodyClassName: style.body,
       progressClassName: style.progressbar,
     })
-    setIsInstalledPWA(
-      ('standalone' in window.navigator && window.navigator['standalone'] === true) ||
-        window.matchMedia('(display-mode: standalone)').matches
-    )
+    // @ts-ignore: Property 'standalone' does not exist on type 'Navigator'.
+    setIsInstalledPWA(window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches)
     return function () {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
     }

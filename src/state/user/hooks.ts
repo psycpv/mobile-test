@@ -24,7 +24,8 @@ import {
   updateSoundEffects,
   updateAccountHealthAndEffects,
   updateBalanceInfo,
-  updateNotification,
+  updatePushNotification,
+  updateInstalledPWA,
 } from './actions'
 import { useHedgerInfo } from 'state/hedger/hooks'
 import useDebounce from 'lib/hooks/useDebounce'
@@ -196,11 +197,21 @@ export function useSetHideZeroBalanceAccounts() {
   )
 }
 
-export function useSetNotification() {
+export function useSetPushNotification() {
   const dispatch = useAppDispatch()
   return useCallback(
     (status: boolean) => {
-      dispatch(updateNotification(status))
+      dispatch(updatePushNotification(status))
+    },
+    [dispatch]
+  )
+}
+
+export function useSetIsInstalledPWA() {
+  const dispatch = useAppDispatch()
+  return useCallback(
+    (status: boolean) => {
+      dispatch(updateInstalledPWA(status))
     },
     [dispatch]
   )
@@ -354,9 +365,14 @@ export function useSoundEffects() {
   return isEnabledSoundEffects
 }
 
-export function useNotification() {
-  const isEnabledNotification = useAppSelector((state) => state.user.isEnabledNotification)
-  return isEnabledNotification
+export function usePushNotification() {
+  const isEnabledPushNotification = useAppSelector((state) => state.user.isEnabledPushNotification)
+  return isEnabledPushNotification
+}
+
+export function useIsInstalledPWA() {
+  const isInstalledPWA = useAppSelector((state) => state.user.isInstalledPWA)
+  return isInstalledPWA
 }
 
 export function useAccountHealthAndEffects() {

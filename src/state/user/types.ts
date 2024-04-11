@@ -38,7 +38,8 @@ export interface UserState {
   hideZeroBalanceAccounts: boolean
 
   isEnabledSoundEffects: boolean
-  isEnabledNotification: boolean
+  isInstalledPWA: boolean
+  isEnabledPushNotification: boolean
   isEnabledAccountHealthAndEffects: boolean
   globalCoinStats: GlobalCoinState
   globalCoinStatsState: ApiState

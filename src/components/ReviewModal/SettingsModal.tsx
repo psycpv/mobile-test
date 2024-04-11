@@ -5,9 +5,9 @@ import { ModalHeader, Modal } from 'components/Modal'
 
 import {
   useAccountHealthAndEffects,
-  useNotification,
+  usePushNotification,
   useSetAccountHealthAndEffects,
-  useSetNotification,
+  useSetPushNotification,
   useSetSoundEffects,
   useSoundEffects,
 } from 'state/user/hooks'
@@ -72,19 +72,19 @@ export default function SettingsModal({
   const soundEffect = useSoundEffects()
   const setAccountHealthAndEffects = useSetAccountHealthAndEffects()
   const showAccountHeathAndEffects = useAccountHealthAndEffects()
-  const isEnabledNotification = useNotification()
-  const setNotification = useSetNotification()
+  const pushNotification = usePushNotification()
+  const setPushNotification = useSetPushNotification()
 
-  function toggleNotification() {
-    if (isEnabledNotification) {
+  function togglePushNotification() {
+    if (pushNotification) {
       window.OneSignalDeferred.push(function (OneSignal: any) {
         OneSignal.User.PushSubscription.optOut()
-        setNotification(!isEnabledNotification)
+        setPushNotification(!pushNotification)
       })
     } else {
       window.OneSignalDeferred.push(function (OneSignal: any) {
         OneSignal.User.PushSubscription.optIn()
-        setNotification(!isEnabledNotification)
+        setPushNotification(!pushNotification)
       })
     }
   }
@@ -124,11 +124,11 @@ export default function SettingsModal({
             </RowEnd>
           </RowBetween>
           <RowBetween marginBottom={'16px'}>
-            <Value color={coolGrey}>Enable Notifications</Value>
+            <Value color={coolGrey}>Enable Push Notifications</Value>
             <RowEnd width={'unset'} marginRight={'10px'}>
               <CustomCheckbox
-                checked={isEnabledNotification}
-                onClick={toggleNotification}
+                checked={pushNotification}
+                onClick={togglePushNotification}
                 checkColor={blue}
                 checkSize={18}
                 fontSize={12}

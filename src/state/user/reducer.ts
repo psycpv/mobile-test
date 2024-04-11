@@ -20,7 +20,8 @@ import {
   updateSoundEffects,
   updateAccountHealthAndEffects,
   updateBalanceInfo,
-  updateNotification,
+  updatePushNotification,
+  updateInstalledPWA,
 } from './actions'
 import { getBalanceHistory, getIsWhiteList, getTotalDepositsAndWithdrawals, getGlobalCoinStats } from './thunks'
 
@@ -64,7 +65,8 @@ export const initialState: UserState = {
 
   hideZeroBalanceAccounts: false,
   isEnabledSoundEffects: true,
-  isEnabledNotification: false,
+  isEnabledPushNotification: false,
+  isInstalledPWA: false,
   isEnabledAccountHealthAndEffects: true,
   globalCoinStats: {},
   globalCoinStatsState: ApiState.LOADING,
@@ -183,8 +185,8 @@ export default createReducer(initialState, (builder) =>
     .addCase(updateSoundEffects, (state, action) => {
       state.isEnabledSoundEffects = action.payload
     })
-    .addCase(updateNotification, (state, action) => {
-      state.isEnabledNotification = action.payload
+    .addCase(updatePushNotification, (state, action) => {
+      state.isEnabledPushNotification = action.payload
     })
     .addCase(updateAccountHealthAndEffects, (state, action) => {
       state.isEnabledAccountHealthAndEffects = action.payload
@@ -203,5 +205,8 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateBalanceInfo, (state, action) => {
       state.balanceInfo = action.payload
+    })
+    .addCase(updateInstalledPWA, (state, action) => {
+      state.isInstalledPWA = action.payload
     })
 )

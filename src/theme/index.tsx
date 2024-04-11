@@ -179,6 +179,7 @@ function colors(): Colors {
       pink1: '#F0A7EB',
       pink30: '#F0A7EB4D',
       darkPink: '#BF5AB8',
+      pwaBgPink: '#3D2A4A',
       brilliantLavender: '#FFBAFA',
       tempPink: '#FFEBFC',
       blue: '#78BEFF',

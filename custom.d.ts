@@ -21,6 +21,8 @@ declare global {
       autoRefreshOnNetworkChange?: boolean
     }
     web3?: Record<string, unknown>
+    OneSignalDeferred: any
+    deferredprompt: any
   }
 }
 

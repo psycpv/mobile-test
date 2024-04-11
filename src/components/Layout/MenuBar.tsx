@@ -13,6 +13,8 @@ import { Row, RowBetween, RowEnd } from 'components/Row'
 import { Close as CloseIcon, GradientBell } from 'components/Icons'
 import SettingsModal from 'components/ReviewModal/SettingsModal'
 import NotificationsModal from 'components/Notifications/NotificationsModal'
+import PwaInstallCard from './PwaInstallCard'
+import { useIsInstalledPWA } from 'state/user/hooks'
 
 export const Sidebar = styled.div<{ isOpen: boolean }>`
   display: flex;
@@ -30,6 +32,12 @@ export const Sidebar = styled.div<{ isOpen: boolean }>`
   border-left-style: solid;
   border-left-width: 1px;
   border-left-color: ${({ theme }) => theme.color4};
+`
+
+export const SidebarAction = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `
 
 const Overlay = styled.div<{ isOpen: boolean }>`
@@ -91,9 +99,6 @@ const MenuItemList = styled(Column)`
 
 const SettingsRow = styled(Row)`
   font-size: 18px;
-
-  position: absolute;
-  bottom: 0px;
   padding: 10px 20px 10px 20px;
   border-top-color: ${({ theme }) => theme.color3};
   border-top-width: 2px;
@@ -107,9 +112,6 @@ const SettingsRow = styled(Row)`
 
 const NotificationsRow = styled(Row)`
   font-size: 18px;
-
-  position: absolute;
-  bottom: 52px;
   padding: 10px 20px 10px 20px;
   border-top-color: ${({ theme }) => theme.color3};
   border-top-width: 2px;
@@ -158,6 +160,7 @@ const menuItems: { title: string; link: string; image: any }[] = [
 
 export function MenuBar({ isOpen, onDismiss }: { isOpen: boolean; onDismiss: () => void }) {
   const router = useRouter()
+  const isInstalledPWA = useIsInstalledPWA()
   const showAdvancedSettingsModal = useModalOpen(ApplicationModal.ADVANCED_SETTINGS)
   const toggleAdSettingsModal = useAdvancedSettingModalToggle()
   const isMobile = useIsMobile()
@@ -185,22 +188,25 @@ export function MenuBar({ isOpen, onDismiss }: { isOpen: boolean; onDismiss: () 
               <Image src={image} width={'30px'} height={'30px'} alt={'info icon'} />
             </MenuItem>
           ))}
+          <SidebarAction>
+            {isInstalledPWA || <PwaInstallCard />}
 
-          {isMobile && <Notifications />}
+            {isMobile && <Notifications />}
 
-          <SettingsRow
-            onClick={() => {
-              toggleAdSettingsModal()
-            }}
-          >
-            <Image
-              src={require(`/public/static/images/menu/Settings.svg`)}
-              width={'30px'}
-              height={'30px'}
-              alt={'info icon'}
-            />
-            <Label margin={'0px 16px'}>Settings</Label>
-          </SettingsRow>
+            <SettingsRow
+              onClick={() => {
+                toggleAdSettingsModal()
+              }}
+            >
+              <Image
+                src={require(`/public/static/images/menu/Settings.svg`)}
+                width={'30px'}
+                height={'30px'}
+                alt={'info icon'}
+              />
+              <Label margin={'0px 16px'}>Settings</Label>
+            </SettingsRow>
+          </SidebarAction>
         </MenuItemList>
         {showAdvancedSettingsModal && (
           <SettingsModal title={'Advanced Settings'} isOpen={true} toggleModal={toggleAdSettingsModal} />

@@ -111,6 +111,7 @@ export interface Colors {
   pink30: Color
   darkPink: Color
   tempPink: Color
+  pwaBgPink: Color
   brilliantLavender: Color
   blue: Color
   darkBlue: Color

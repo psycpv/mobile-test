@@ -189,7 +189,7 @@ export function MenuBar({ isOpen, onDismiss }: { isOpen: boolean; onDismiss: () 
             </MenuItem>
           ))}
           <SidebarAction>
-            {isInstalledPWA || <PwaInstallCard />}
+            {!isInstalledPWA && isMobile && <PwaInstallCard />}
 
             {isMobile && <Notifications />}
 

@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { useTour } from '@reactour/tour'
+import { SetStateAction, useEffect } from 'react'
+import { StepType, useTour } from '@reactour/tour'
 
 import { toBN } from 'utils/numbers'
 import useTradePage from 'hooks/useTradePage'
@@ -8,6 +8,7 @@ import { Step } from 'components/Tour/Step'
 import { ExternalLink } from 'components/Link'
 import Handshake from 'components/Icons/Handshake'
 import styled from 'styled-components'
+import { useIsMobile } from 'lib/hooks/useWindowSize'
 
 const Link = styled(ExternalLink)`
   color: ${({ theme }) => theme.almostWhite};
@@ -17,6 +18,7 @@ const Link = styled(ExternalLink)`
 export default function GuideTour() {
   const { setIsOpen, setSteps, setCurrentStep } = useTour()
   const { balance } = useTradePage()
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     if (!setSteps) {
@@ -36,7 +38,7 @@ export default function GuideTour() {
     localStorage.setItem('tour-part3', 'done')
     localStorage.setItem('tour-part4', 'done')
 
-    setSteps([
+    const steps: SetStateAction<StepType[]> = [
       {
         selector: '.tour-step-5',
         content: (
@@ -56,10 +58,20 @@ export default function GuideTour() {
         position: 'center',
         highlightedSelectors: [],
       },
-    ])
+    ]
+
+    if (isMobile)
+      steps.push({
+        selector: '.tour-step-6',
+        content: <Step title="Setup PWA" content="Get our PWA with one click for a faster and smoother experience" />,
+        position: 'center',
+        highlightedSelectors: [],
+      })
+
+    setSteps(steps)
     setCurrentStep(0)
     setIsOpen(true)
-  }, [setSteps, balance])
+  }, [setSteps, balance, isMobile, setCurrentStep, setIsOpen])
 
   return null
 }

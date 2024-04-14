@@ -5,27 +5,28 @@ import { useIsMobile } from 'lib/hooks/useWindowSize'
 import { useSetIsInstalledPWA } from 'state/user/hooks'
 import { toast } from 'react-toastify'
 
-const Wrapper = styled.div<{ isMobile: boolean }>`
+const Container = styled.div<{ isMobile: boolean }>`
   background: ${({ theme }) => theme.pwaBgPink};
   width: 100%;
   height: 135px;
-  padding: 20px;
   font-size: 16px;
 `
 
-const BgImage = styled.div`
-  background: url(/static/images/menu/pwa-bg.png);
-  width: 162px;
-  height: 135px;
-  position: absolute;
-  top: 0;
-  left: 0;
+const BgImageContainer = styled.div`
+  background: url(/static/images/menu/pwa-bg.png) no-repeat;
+  padding: 20px;
 `
 
-const Desc = styled.div`
+const Label = styled.div`
   color: white;
   padding-bottom: 20px;
   line-height: 22px;
+`
+
+const ActionContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: end;
 `
 
 export default function PwaInstallCard() {
@@ -50,25 +51,26 @@ export default function PwaInstallCard() {
   }
 
   return (
-    <Wrapper isMobile={isMobile}>
-      <BgImage />
-      <Desc>Get our PWA with one click for a faster and smoother experience</Desc>
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
-        <MainButton
-          bgColor={pink}
-          borderColor={darkPink}
-          hoverColor={brilliantLavender}
-          height={35}
-          width={80}
-          simpleMode
-          style={{
-            textAlign: 'right',
-          }}
-          onClick={handleInstall}
-        >
-          Install
-        </MainButton>
-      </div>
-    </Wrapper>
+    <Container isMobile={isMobile}>
+      <BgImageContainer>
+        <Label>Get our PWA with one click for a faster and smoother experience</Label>
+        <ActionContainer>
+          <MainButton
+            bgColor={pink}
+            borderColor={darkPink}
+            hoverColor={brilliantLavender}
+            height={35}
+            width={80}
+            simpleMode
+            style={{
+              textAlign: 'right',
+            }}
+            onClick={handleInstall}
+          >
+            Install
+          </MainButton>
+        </ActionContainer>
+      </BgImageContainer>
+    </Container>
   )
 }

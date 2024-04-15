@@ -92,7 +92,7 @@ export default function GuideTour() {
                   </IconParagraph>
                 </div>
               ) : (
-                "Open safari for best experience with pwa' something like for chrome."
+                'Open safari for best experience with PWA'
               )
             ) : (
               'Get our PWA with one click for a faster and smoother experience'

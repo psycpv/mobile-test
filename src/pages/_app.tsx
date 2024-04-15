@@ -162,7 +162,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                                 setIsOpen(false)
                               }}
                               simpleMode
-                              customText={isIOS && !isSafari ? 'Finish' : 'Install PWA'}
+                              customText={isIOS && !isSafari ? 'Install PWA' : 'Finish'}
                             />
                           </ButtonWrapper>
                         )

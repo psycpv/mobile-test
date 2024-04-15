@@ -1,11 +1,11 @@
 {
-  "short_name": "Vibe",
-  "name": "Vibe",
+  "short_name": "Vibe Trading",
+  "name": "Vibe Trading",
   "background_color": "#08091A",
   "theme_color": "#08091A",
   "display": "standalone",
   "homepage_url": "",
-  "providedBy": { "name": "Vibe", "url": "" },
+  "providedBy": { "name": "Vibe Trading", "url": "" },
   "icons": [
     {
       "src": "./images/192x192_App_Icon.png",
@@ -21,7 +21,7 @@
     }
   ],
   "orientation": "portrait",
-  "description": "Based",
+  "description": "Vibe Trading",
   "iconPath": "./images/512x512_App_Icon.png",
   "start_url": "/"
 }

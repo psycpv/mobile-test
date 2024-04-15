@@ -37,7 +37,8 @@ export default function OneSignalProvider({ children }: { children: ReactNode })
       OneSignal.User.PushSubscription.addEventListener('change', function (event: any) {
         if (event.current.id && !event.previous.id) setPushNotification(true)
 
-        if (event.current.id) toast.success(`Push Notification is ${event.current.optedIn ? 'enabled' : 'disabled'}`)
+        if (event.current.id && event.previous.id)
+          toast.success(`Push Notification is ${event.current.optedIn ? 'enabled' : 'disabled'}`)
       })
     })
     return () => {

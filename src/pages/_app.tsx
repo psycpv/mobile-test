@@ -21,6 +21,7 @@ import Head from 'next/head'
 import OneSignalProvider from 'components/OneSignalProvider'
 import PwaProvider from 'components/PwaProvider'
 import { toast } from 'react-toastify'
+import { isIOS, isSafari } from 'mobile-device-detect'
 
 const Close = styled.div`
   width: 24px;
@@ -143,24 +144,25 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                           <ButtonWrapper>
                             <AnimatedButton
                               onClick={() => {
-                                window.deferredprompt
-                                  .prompt()
-                                  .then(() => window.deferredprompt.userChoice)
-                                  .then((choiceResult: any) => {
-                                    if (choiceResult.outcome === 'accepted') {
-                                      toast.success('PWA native installation succesful')
-                                    } else {
-                                      toast.error('User opted out by cancelling native installation')
-                                    }
-                                  })
-                                  .catch((err: any) => {
-                                    toast.success('Error occurred in the installing process: ' + err)
-                                  })
+                                if (isIOS && !isSafari)
+                                  window.deferredprompt
+                                    .prompt()
+                                    .then(() => window.deferredprompt.userChoice)
+                                    .then((choiceResult: any) => {
+                                      if (choiceResult.outcome === 'accepted') {
+                                        toast.success('PWA native installation succesful')
+                                      } else {
+                                        toast.error('User opted out by cancelling native installation')
+                                      }
+                                    })
+                                    .catch((err: any) => {
+                                      toast.success('Error occurred in the installing process: ' + err)
+                                    })
 
                                 setIsOpen(false)
                               }}
                               simpleMode
-                              customText={'Install PWA'}
+                              customText={isIOS && !isSafari ? 'Finish' : 'Install PWA'}
                             />
                           </ButtonWrapper>
                         )

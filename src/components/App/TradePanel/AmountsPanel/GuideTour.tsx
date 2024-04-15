@@ -1,7 +1,6 @@
 import { SetStateAction, useEffect } from 'react'
 import { StepType, useTour } from '@reactour/tour'
 
-import { toBN } from 'utils/numbers'
 import useTradePage from 'hooks/useTradePage'
 
 import { Step } from 'components/Tour/Step'

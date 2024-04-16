@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useTour } from '@reactour/tour'
+import React, { SetStateAction, useEffect } from 'react'
+import { StepType, useTour } from '@reactour/tour'
 import styled, { useTheme } from 'styled-components'
 
 import { useIsSideBarVisible } from 'state/application/hooks'
@@ -23,7 +23,7 @@ import { Wallet } from 'components/Icons'
 import { ExternalLink } from 'components/Link'
 import IOSShare from '/public/static/images/Share.svg'
 import HomeScreen from '/public/static/images/HomeScreen.svg'
-import { isIOS, isSafari } from 'mobile-device-detect'
+import { isIOS, isSafari, isMobile } from 'mobile-device-detect'
 
 export const Container = styled(Column)`
   background: ${({ theme }) => theme.color1};
@@ -118,7 +118,7 @@ export default function Symbol() {
 
     localStorage.setItem('tour-part1', 'done')
 
-    setSteps([
+    const steps: SetStateAction<StepType[]> = [
       {
         selector: '.tour-step-1',
         content: (
@@ -150,7 +150,9 @@ export default function Symbol() {
           />
         ),
       },
-      {
+    ]
+    if (isMobile)
+      steps.push({
         selector: '.tour-step-6',
         content: (
           <Step
@@ -181,8 +183,8 @@ export default function Symbol() {
         ),
         position: 'center',
         highlightedSelectors: [],
-      },
-    ])
+      })
+    setSteps(steps)
     setIsOpen(true)
   }, [setSteps])
 

@@ -72,35 +72,35 @@ export default function GuideTour() {
       },
     ]
 
-    if (isMobile)
-      steps.push({
-        selector: '.tour-step-6',
-        content: (
-          <Step
-            title="Setup PWA"
-            content={
-              isIOS ? (
-                <div>
-                  <div>To install PWA app</div>
-                  <br />
-                  <IconParagraph>
-                    <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
-                    <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
-                  </IconParagraph>
-                  <IconParagraph>
-                    <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
-                    <div>2) Press &apos;Add to Home Screen&apos;.</div>
-                  </IconParagraph>
-                </div>
-              ) : (
-                'Get our PWA with one click for a faster and smoother experience'
-              )
-            }
-          />
-        ),
-        position: 'center',
-        highlightedSelectors: [],
-      })
+    // if (isMobile)
+    steps.push({
+      selector: '.tour-step-6',
+      content: (
+        <Step
+          title="Setup PWA"
+          content={
+            isIOS ? (
+              <div>
+                <div>To install PWA app</div>
+                <br />
+                <IconParagraph>
+                  <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
+                  <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
+                </IconParagraph>
+                <IconParagraph>
+                  <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
+                  <div>2) Press &apos;Add to Home Screen&apos;.</div>
+                </IconParagraph>
+              </div>
+            ) : (
+              'Get our PWA with one click for a faster and smoother experience'
+            )
+          }
+        />
+      ),
+      position: 'center',
+      highlightedSelectors: [],
+    })
 
     setSteps(steps)
     setCurrentStep(0)

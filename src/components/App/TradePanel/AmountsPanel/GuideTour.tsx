@@ -2,6 +2,7 @@ import { SetStateAction, useEffect } from 'react'
 import { StepType, useTour } from '@reactour/tour'
 
 import useTradePage from 'hooks/useTradePage'
+import { toBN } from 'utils/numbers'
 
 import { Step } from 'components/Tour/Step'
 import { ExternalLink } from 'components/Link'
@@ -35,9 +36,9 @@ export default function GuideTour() {
       return
     }
 
-    // if (toBN(balance).lte(0)) {
-    //   return
-    // }
+    if (toBN(balance).lte(0)) {
+      return
+    }
 
     if (localStorage.getItem('tour-part4') === 'done') {
       return
@@ -70,39 +71,39 @@ export default function GuideTour() {
       },
     ]
 
-    // if (isMobile)
-    steps.push({
-      selector: '.tour-step-6',
-      content: (
-        <Step
-          title="Setup PWA"
-          content={
-            isIOS ? (
-              isSafari ? (
-                <div>
-                  <div>To install PWA app</div>
-                  <br />
-                  <IconParagraph>
-                    <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
-                    <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
-                  </IconParagraph>
-                  <IconParagraph>
-                    <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
-                    <div>2) Press &apos;Add to Home Screen&apos;.</div>
-                  </IconParagraph>
-                </div>
+    if (isMobile)
+      steps.push({
+        selector: '.tour-step-6',
+        content: (
+          <Step
+            title="Setup PWA"
+            content={
+              isIOS ? (
+                isSafari ? (
+                  <div>
+                    <div>To install PWA app</div>
+                    <br />
+                    <IconParagraph>
+                      <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
+                      <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
+                    </IconParagraph>
+                    <IconParagraph>
+                      <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
+                      <div>2) Press &apos;Add to Home Screen&apos;.</div>
+                    </IconParagraph>
+                  </div>
+                ) : (
+                  'Open safari for best experience with PWA'
+                )
               ) : (
-                'Open safari for best experience with PWA'
+                'Get our PWA with one click for a faster and smoother experience'
               )
-            ) : (
-              'Get our PWA with one click for a faster and smoother experience'
-            )
-          }
-        />
-      ),
-      position: 'center',
-      highlightedSelectors: [],
-    })
+            }
+          />
+        ),
+        position: 'center',
+        highlightedSelectors: [],
+      })
 
     setSteps(steps)
     setCurrentStep(0)

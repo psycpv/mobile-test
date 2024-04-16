@@ -21,11 +21,20 @@ import Image from 'next/image'
 import RABBY_ICON_URL from '/public/static/images/wallets/rabby.svg'
 import { Wallet } from 'components/Icons'
 import { ExternalLink } from 'components/Link'
+import IOSShare from '/public/static/images/Share.svg'
+import HomeScreen from '/public/static/images/HomeScreen.svg'
+import { isIOS, isSafari } from 'mobile-device-detect'
 
 export const Container = styled(Column)`
   background: ${({ theme }) => theme.color1};
 `
 
+const IconParagraph = styled.div`
+  display: flex;
+  padding: 5px 0;
+  gap: 8px;
+  align-items: center;
+`
 export const ItemsRow = styled.div<{ gap?: string; padding?: string; margin?: string; isVisible?: boolean }>`
   display: flex;
   gap: ${({ gap, isVisible }) => (isVisible ? gap ?? '8px' : '0')};
@@ -140,6 +149,38 @@ export default function Symbol() {
             icon={<Wallet size={18} color={theme.almostWhite} />}
           />
         ),
+      },
+      {
+        selector: '.tour-step-6',
+        content: (
+          <Step
+            title="Setup PWA"
+            content={
+              isIOS ? (
+                isSafari ? (
+                  <div>
+                    <div>To install PWA app</div>
+                    <br />
+                    <IconParagraph>
+                      <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
+                      <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
+                    </IconParagraph>
+                    <IconParagraph>
+                      <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
+                      <div>2) Press &apos;Add to Home Screen&apos;.</div>
+                    </IconParagraph>
+                  </div>
+                ) : (
+                  'Open safari for best experience with PWA'
+                )
+              ) : (
+                'Get our PWA with one click for a faster and smoother experience'
+              )
+            }
+          />
+        ),
+        position: 'center',
+        highlightedSelectors: [],
       },
     ])
     setIsOpen(true)

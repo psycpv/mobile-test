@@ -3,7 +3,7 @@ import { ModalProvider } from 'styled-react-modal'
 import dynamic from 'next/dynamic'
 import type { AppProps } from 'next/app'
 import { BlockNumberProvider } from 'lib/hooks/useBlockNumber'
-import { TourProvider } from '@reactour/tour'
+import { TourProvider, useTour } from '@reactour/tour'
 
 import store, { persistor } from 'state'
 
@@ -22,6 +22,7 @@ import OneSignalProvider from 'components/OneSignalProvider'
 import PwaProvider from 'components/PwaProvider'
 import { toast } from 'react-toastify'
 import { isIOS, isSafari } from 'mobile-device-detect'
+import { isMobile } from 'mobile-device-detect'
 
 const Close = styled.div`
   width: 24px;
@@ -46,6 +47,7 @@ if (typeof window !== 'undefined' && !!window.ethereum) {
 }
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const { setIsOpen, setSteps, setCurrentStep } = useTour()
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -118,7 +120,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                           localStorage.setItem('tour-part2', 'done')
                           localStorage.setItem('tour-part3', 'done')
                           localStorage.setItem('tour-part4', 'done')
-                          setIsOpen(false)
+                          if (isMobile) {
+                            setCurrentStep(2)
+                          } else {
+                            setIsOpen(false)
+                          }
                         }}
                         style={{
                           fontWeight: 'bold',
@@ -162,7 +168,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                                 setIsOpen(false)
                               }}
                               simpleMode
-                              customText={isIOS && !isSafari ? 'Install PWA' : 'Finish'}
+                              customText={isIOS ? 'Finish' : 'Install PWA'}
                             />
                           </ButtonWrapper>
                         )

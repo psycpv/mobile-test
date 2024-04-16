@@ -21,7 +21,7 @@ import Head from 'next/head'
 import OneSignalProvider from 'components/OneSignalProvider'
 import PwaProvider from 'components/PwaProvider'
 import { toast } from 'react-toastify'
-import { isIOS, isSafari } from 'mobile-device-detect'
+import { isIOS } from 'mobile-device-detect'
 import { isMobile } from 'mobile-device-detect'
 
 const Close = styled.div`
@@ -150,7 +150,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                           <ButtonWrapper>
                             <AnimatedButton
                               onClick={() => {
-                                if (isIOS && !isSafari)
+                                if (!isIOS)
                                   window.deferredprompt
                                     .prompt()
                                     .then(() => window.deferredprompt.userChoice)

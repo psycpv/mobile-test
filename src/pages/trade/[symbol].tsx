@@ -173,7 +173,7 @@ export default function Symbol() {
                     </IconParagraph>
                   </div>
                 ) : (
-                  'Open safari for best experience with PWA'
+                  'Open Safari for best experience with PWA'
                 )
               ) : (
                 'Get our PWA with one click for a faster and smoother experience'

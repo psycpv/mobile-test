@@ -21,7 +21,8 @@ import Head from 'next/head'
 import OneSignalProvider from 'components/OneSignalProvider'
 import PwaProvider from 'components/PwaProvider'
 import { toast } from 'react-toastify'
-import { isIOS, isMobile } from 'mobile-device-detect'
+import useIsIOS from 'hooks/useIsIOS'
+import { isMobile } from 'react-device-detect'
 
 const Close = styled.div`
   width: 24px;
@@ -46,6 +47,7 @@ if (typeof window !== 'undefined' && !!window.ethereum) {
 }
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  const isIOS = useIsIOS()
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker

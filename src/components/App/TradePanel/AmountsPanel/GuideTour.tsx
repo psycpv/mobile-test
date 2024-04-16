@@ -12,7 +12,7 @@ import { useIsMobile } from 'lib/hooks/useWindowSize'
 import IOSShare from '/public/static/images/Share.svg'
 import HomeScreen from '/public/static/images/HomeScreen.svg'
 import Image from 'next/image'
-import { isIOS, isSafari } from 'mobile-device-detect'
+import useIsIOS from 'hooks/useIsIOS'
 
 const Link = styled(ExternalLink)`
   color: ${({ theme }) => theme.almostWhite};
@@ -30,6 +30,7 @@ export default function GuideTour() {
   const { setIsOpen, setSteps, setCurrentStep } = useTour()
   const { balance } = useTradePage()
   const isMobile = useIsMobile()
+  const isIOS = useIsIOS()
 
   useEffect(() => {
     if (!setSteps) {
@@ -79,22 +80,18 @@ export default function GuideTour() {
             title="Setup PWA"
             content={
               isIOS ? (
-                isSafari ? (
-                  <div>
-                    <div>To install PWA app</div>
-                    <br />
-                    <IconParagraph>
-                      <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
-                      <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
-                    </IconParagraph>
-                    <IconParagraph>
-                      <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
-                      <div>2) Press &apos;Add to Home Screen&apos;.</div>
-                    </IconParagraph>
-                  </div>
-                ) : (
-                  'Open safari for best experience with PWA'
-                )
+                <div>
+                  <div>To install PWA app</div>
+                  <br />
+                  <IconParagraph>
+                    <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
+                    <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
+                  </IconParagraph>
+                  <IconParagraph>
+                    <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
+                    <div>2) Press &apos;Add to Home Screen&apos;.</div>
+                  </IconParagraph>
+                </div>
               ) : (
                 'Get our PWA with one click for a faster and smoother experience'
               )

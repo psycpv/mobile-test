@@ -23,7 +23,8 @@ import { Wallet } from 'components/Icons'
 import { ExternalLink } from 'components/Link'
 import IOSShare from '/public/static/images/Share.svg'
 import HomeScreen from '/public/static/images/HomeScreen.svg'
-import { isIOS, isMobile } from 'mobile-device-detect'
+import { useIsMobile } from 'lib/hooks/useWindowSize'
+import useIsIOS from 'hooks/useIsIOS'
 
 export const Container = styled(Column)`
   background: ${({ theme }) => theme.color1};
@@ -89,6 +90,8 @@ const Link = styled(ExternalLink)`
 `
 
 export default function Symbol() {
+  const isMobile = useIsMobile()
+  const isIOS = useIsIOS()
   const { setIsOpen, setSteps } = useTour()
   const isSideBarVisible = useIsSideBarVisible()
   const theme = useTheme()

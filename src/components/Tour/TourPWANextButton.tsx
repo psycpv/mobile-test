@@ -18,7 +18,8 @@ export default function TourPWANextButton({ setIsOpen }: { setIsOpen: Dispatch<S
     <ButtonWrapper>
       <AnimatedButton
         onClick={() => {
-          if (isIOS)
+          if (isIOS) setIsOpenPWAPrompt(true)
+          else
             window.deferredprompt
               .prompt()
               .then(() => window.deferredprompt.userChoice)
@@ -32,7 +33,6 @@ export default function TourPWANextButton({ setIsOpen }: { setIsOpen: Dispatch<S
               .catch((err: any) => {
                 toast.success('Error occurred in the installing process: ' + err)
               })
-          else setIsOpenPWAPrompt(true)
 
           setIsOpen(false)
         }}

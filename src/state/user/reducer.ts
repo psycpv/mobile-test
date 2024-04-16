@@ -69,7 +69,7 @@ export const initialState: UserState = {
   isEnabledPushNotification: false,
   isInstalledPWA: false,
   isEnabledAccountHealthAndEffects: true,
-  isOpenPWAPrompt: true,
+  isOpenPWAPrompt: false,
   globalCoinStats: {},
   globalCoinStatsState: ApiState.LOADING,
 }

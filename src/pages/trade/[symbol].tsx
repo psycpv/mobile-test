@@ -154,6 +154,8 @@ export default function Symbol() {
         ),
       },
     ]
+    console.log('isIOS', isIOS)
+
     if (isMobile)
       steps.push({
         selector: '.tour-step-6',
@@ -185,7 +187,7 @@ export default function Symbol() {
       })
     setSteps(steps)
     setIsOpen(true)
-  }, [setSteps])
+  }, [isIOS, isMobile, setIsOpen, setSteps, theme.almostWhite])
 
   return (
     <Container>

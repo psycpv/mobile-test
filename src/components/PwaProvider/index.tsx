@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import { useSetIsInstalledPWA } from 'state/user/hooks'
-import { isIOS, isSafari } from 'mobile-device-detect'
-import { toast } from 'react-toastify'
 
 function handleBeforeInstallPromptEvent(event: any) {
   event.preventDefault()
@@ -19,10 +17,6 @@ export default function PwaProvider() {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
     }
   }, [setIsInstalledPWA])
-
-  useEffect(() => {
-    if (isIOS && !isSafari) toast.info('To install PWA app, we recommend to use Safari Browser.')
-  }, [])
 
   return <></>
 }

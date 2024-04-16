@@ -23,7 +23,7 @@ import { Wallet } from 'components/Icons'
 import { ExternalLink } from 'components/Link'
 import IOSShare from '/public/static/images/Share.svg'
 import HomeScreen from '/public/static/images/HomeScreen.svg'
-import { isIOS, isSafari, isMobile } from 'mobile-device-detect'
+import { isIOS, isMobile } from 'mobile-device-detect'
 
 export const Container = styled(Column)`
   background: ${({ theme }) => theme.color1};
@@ -159,22 +159,18 @@ export default function Symbol() {
             title="Setup PWA"
             content={
               isIOS ? (
-                isSafari ? (
-                  <div>
-                    <div>To install PWA app</div>
-                    <br />
-                    <IconParagraph>
-                      <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
-                      <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
-                    </IconParagraph>
-                    <IconParagraph>
-                      <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
-                      <div>2) Press &apos;Add to Home Screen&apos;.</div>
-                    </IconParagraph>
-                  </div>
-                ) : (
-                  'Open Safari for best experience with PWA'
-                )
+                <div>
+                  <div>To install PWA app</div>
+                  <br />
+                  <IconParagraph>
+                    <Image src={IOSShare} alt="ios share icon" width={20} height={20} />
+                    <div>1) Press the &apos;Share&apos; button on the menu bar.</div>
+                  </IconParagraph>
+                  <IconParagraph>
+                    <Image src={HomeScreen} alt="ios share icon" width={20} height={20} />
+                    <div>2) Press &apos;Add to Home Screen&apos;.</div>
+                  </IconParagraph>
+                </div>
               ) : (
                 'Get our PWA with one click for a faster and smoother experience'
               )

@@ -3,7 +3,7 @@ import { ModalProvider } from 'styled-react-modal'
 import dynamic from 'next/dynamic'
 import type { AppProps } from 'next/app'
 import { BlockNumberProvider } from 'lib/hooks/useBlockNumber'
-import { TourProvider, useTour } from '@reactour/tour'
+import { TourProvider } from '@reactour/tour'
 
 import store, { persistor } from 'state'
 
@@ -21,8 +21,7 @@ import Head from 'next/head'
 import OneSignalProvider from 'components/OneSignalProvider'
 import PwaProvider from 'components/PwaProvider'
 import { toast } from 'react-toastify'
-import { isIOS } from 'mobile-device-detect'
-import { isMobile } from 'mobile-device-detect'
+import { isIOS, isMobile } from 'mobile-device-detect'
 
 const Close = styled.div`
   width: 24px;
@@ -47,7 +46,6 @@ if (typeof window !== 'undefined' && !!window.ethereum) {
 }
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const { setIsOpen, setSteps, setCurrentStep } = useTour()
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
@@ -142,8 +140,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                     )
                   }}
                   nextButton={({ Button, currentStep, stepsLength, setIsOpen, setCurrentStep, steps }) => {
+                    if (steps && steps[currentStep].selector === '.tour-step-2') setIsOpen(false)
                     const last = currentStep === stepsLength - 1
-
                     if (last) {
                       if (steps && steps[currentStep].selector === '.tour-step-6') {
                         return (

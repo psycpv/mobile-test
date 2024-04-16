@@ -22,6 +22,7 @@ import {
   updateBalanceInfo,
   updatePushNotification,
   updateInstalledPWA,
+  updateOpenPWAPrompt,
 } from './actions'
 import { getBalanceHistory, getIsWhiteList, getTotalDepositsAndWithdrawals, getGlobalCoinStats } from './thunks'
 
@@ -68,6 +69,7 @@ export const initialState: UserState = {
   isEnabledPushNotification: false,
   isInstalledPWA: false,
   isEnabledAccountHealthAndEffects: true,
+  isOpenPWAPrompt: true,
   globalCoinStats: {},
   globalCoinStatsState: ApiState.LOADING,
 }
@@ -208,5 +210,8 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(updateInstalledPWA, (state, action) => {
       state.isInstalledPWA = action.payload
+    })
+    .addCase(updateOpenPWAPrompt, (state, action) => {
+      state.isOpenPWAPrompt = action.payload
     })
 )

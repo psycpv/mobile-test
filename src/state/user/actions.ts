@@ -27,5 +27,6 @@ export const updateHideZeroBalanceAccounts = createAction<boolean>('user/updateH
 export const updateSoundEffects = createAction<boolean>('user/updateSoundEffects')
 export const updatePushNotification = createAction<boolean>('user/updatePushNotification')
 export const updateInstalledPWA = createAction<boolean>('user/updateInstalledPWA')
+export const updateOpenPWAPrompt = createAction<boolean>('user/updateOpenPWAPrompt')
 export const updateAccountHealthAndEffects = createAction<boolean>('user/updateAccountHealthAndEffects')
 export const updateBalanceInfo = createAction<BalanceInfosType>('user/updateBalanceInfo')

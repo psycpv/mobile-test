@@ -20,9 +20,9 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import OneSignalProvider from 'components/OneSignalProvider'
 import PwaProvider from 'components/PwaProvider'
-import { toast } from 'react-toastify'
 import useIsIOS from 'hooks/useIsIOS'
 import { isMobile } from 'react-device-detect'
+import TourPWANextButton from 'components/Tour/TourPWANextButton'
 
 const Close = styled.div`
   width: 24px;
@@ -145,32 +145,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                     const last = currentStep === stepsLength - 1
                     if (last) {
                       if (steps && steps[currentStep].selector === '.tour-step-6') {
-                        return (
-                          <ButtonWrapper>
-                            <AnimatedButton
-                              onClick={() => {
-                                if (!isIOS)
-                                  window.deferredprompt
-                                    .prompt()
-                                    .then(() => window.deferredprompt.userChoice)
-                                    .then((choiceResult: any) => {
-                                      if (choiceResult.outcome === 'accepted') {
-                                        toast.success('PWA native installation succesful')
-                                      } else {
-                                        toast.error('User opted out by cancelling native installation')
-                                      }
-                                    })
-                                    .catch((err: any) => {
-                                      toast.success('Error occurred in the installing process: ' + err)
-                                    })
-
-                                setIsOpen(false)
-                              }}
-                              simpleMode
-                              customText={isIOS ? 'Finish' : 'Install PWA'}
-                            />
-                          </ButtonWrapper>
-                        )
+                        return <TourPWANextButton setIsOpen={setIsOpen} />
                       } else {
                         return (
                           <ButtonWrapper>

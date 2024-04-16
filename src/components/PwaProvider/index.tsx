@@ -1,5 +1,7 @@
+import dynamic from 'next/dynamic'
 import React, { useEffect } from 'react'
-import { useSetIsInstalledPWA } from 'state/user/hooks'
+import { useIsOpenPWAPrompt, useSetIsInstalledPWA, useSetIsOpenPWAPrompt } from 'state/user/hooks'
+const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), { ssr: false })
 
 function handleBeforeInstallPromptEvent(event: any) {
   event.preventDefault()
@@ -7,6 +9,8 @@ function handleBeforeInstallPromptEvent(event: any) {
 }
 export default function PwaProvider() {
   const setIsInstalledPWA = useSetIsInstalledPWA()
+  const setIsOpenPWAPrompt = useSetIsOpenPWAPrompt()
+  const isOpenPWAPrompt = useIsOpenPWAPrompt()
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
     // @ts-ignore: Property 'standalone' does not exist on type 'Navigator'.
@@ -18,5 +22,5 @@ export default function PwaProvider() {
     }
   }, [setIsInstalledPWA])
 
-  return <></>
+  return isOpenPWAPrompt ? <PWAPrompt onClose={() => setIsOpenPWAPrompt(false)} /> : null
 }

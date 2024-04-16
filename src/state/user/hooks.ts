@@ -26,6 +26,7 @@ import {
   updateBalanceInfo,
   updatePushNotification,
   updateInstalledPWA,
+  updateOpenPWAPrompt,
 } from './actions'
 import { useHedgerInfo } from 'state/hedger/hooks'
 import useDebounce from 'lib/hooks/useDebounce'
@@ -217,6 +218,16 @@ export function useSetIsInstalledPWA() {
   )
 }
 
+export function useSetIsOpenPWAPrompt() {
+  const dispatch = useAppDispatch()
+  return useCallback(
+    (status: boolean) => {
+      dispatch(updateOpenPWAPrompt(status))
+    },
+    [dispatch]
+  )
+}
+
 export function useSetSoundEffects() {
   const dispatch = useAppDispatch()
   return useCallback(
@@ -373,6 +384,11 @@ export function usePushNotification() {
 export function useIsInstalledPWA() {
   const isInstalledPWA = useAppSelector((state) => state.user.isInstalledPWA)
   return isInstalledPWA
+}
+
+export function useIsOpenPWAPrompt() {
+  const isOpenPWAPrompt = useAppSelector((state) => state.user.isOpenPWAPrompt)
+  return isOpenPWAPrompt
 }
 
 export function useAccountHealthAndEffects() {

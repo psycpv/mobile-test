@@ -39,6 +39,7 @@ export interface UserState {
 
   isEnabledSoundEffects: boolean
   isInstalledPWA: boolean
+  isOpenPWAPrompt: boolean
   isEnabledPushNotification: boolean
   isEnabledAccountHealthAndEffects: boolean
   globalCoinStats: GlobalCoinState

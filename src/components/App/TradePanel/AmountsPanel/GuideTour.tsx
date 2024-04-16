@@ -2,7 +2,7 @@ import { SetStateAction, useEffect } from 'react'
 import { StepType, useTour } from '@reactour/tour'
 
 import useTradePage from 'hooks/useTradePage'
-// import { toBN } from 'utils/numbers'
+import { toBN } from 'utils/numbers'
 
 import { Step } from 'components/Tour/Step'
 import { ExternalLink } from 'components/Link'
@@ -33,6 +33,10 @@ export default function GuideTour() {
   const isIOS = useIsIOS()
 
   useEffect(() => {
+    if (toBN(balance).lte(0)) {
+      return
+    }
+
     const steps: SetStateAction<StepType[]> = [
       {
         selector: '.tour-step-5',
@@ -89,10 +93,6 @@ export default function GuideTour() {
       return
     }
     setSteps(steps)
-
-    // if (toBN(balance).lte(0)) {
-    //   return
-    // }
 
     if (localStorage.getItem('tour-part4') === 'done') {
       return

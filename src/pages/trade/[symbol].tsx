@@ -103,24 +103,6 @@ export default function Symbol() {
   }, [router])
 
   useEffect(() => {
-    if (!setSteps) {
-      return
-    }
-
-    if (localStorage.getItem('wagmi.wallet')) {
-      localStorage.setItem('tour-part1', 'done')
-      localStorage.setItem('tour-part2', 'done')
-      localStorage.setItem('tour-part3', 'done')
-      localStorage.setItem('tour-part4', 'done')
-      return
-    }
-
-    if (localStorage.getItem('tour-part1') === 'done') {
-      return
-    }
-
-    localStorage.setItem('tour-part1', 'done')
-
     const steps: SetStateAction<StepType[]> = [
       {
         selector: '.tour-step-1',
@@ -184,7 +166,26 @@ export default function Symbol() {
         position: 'center',
         highlightedSelectors: [],
       })
+
+    if (!setSteps) {
+      return
+    }
+
     setSteps(steps)
+
+    if (localStorage.getItem('wagmi.wallet')) {
+      localStorage.setItem('tour-part1', 'done')
+      localStorage.setItem('tour-part2', 'done')
+      localStorage.setItem('tour-part3', 'done')
+      localStorage.setItem('tour-part4', 'done')
+      return
+    }
+
+    if (localStorage.getItem('tour-part1') === 'done') {
+      return
+    }
+
+    localStorage.setItem('tour-part1', 'done')
 
     setIsOpen(true)
   }, [isIOS, isMobile, setIsOpen, setSteps, theme.almostWhite])

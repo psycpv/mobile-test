@@ -18,7 +18,6 @@ export default function TourPWANextButton({ setIsOpen }: { setIsOpen: Dispatch<S
     <ButtonWrapper>
       <AnimatedButton
         onClick={() => {
-          return setIsOpenPWAPrompt(true)
           if (isIOS)
             window.deferredprompt
               .prompt()

@@ -115,6 +115,12 @@ export default function Symbol() {
       return
     }
 
+    if (localStorage.getItem('tour-part1') === 'done') {
+      return
+    }
+
+    localStorage.setItem('tour-part1', 'done')
+
     const steps: SetStateAction<StepType[]> = [
       {
         selector: '.tour-step-1',
@@ -179,12 +185,6 @@ export default function Symbol() {
         highlightedSelectors: [],
       })
     setSteps(steps)
-
-    if (localStorage.getItem('tour-part1') === 'done') {
-      return
-    }
-
-    localStorage.setItem('tour-part1', 'done')
 
     setIsOpen(true)
   }, [isIOS, isMobile, setIsOpen, setSteps, theme.almostWhite])

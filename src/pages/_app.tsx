@@ -140,7 +140,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                     )
                   }}
                   nextButton={({ Button, currentStep, stepsLength, setIsOpen, setCurrentStep, steps }) => {
-                    if (steps && steps[currentStep].selector === '.tour-step-2') setIsOpen(false)
                     const last = currentStep === stepsLength - 1
                     if (last) {
                       if (steps && steps[currentStep].selector === '.tour-step-6') {
@@ -182,6 +181,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                       <ButtonWrapper>
                         <AnimatedButton
                           onClick={() => {
+                            if (steps && steps[currentStep].selector === '.tour-step-2') setIsOpen(false)
                             setCurrentStep((s) => (s === (steps?.length || 1) - 1 ? 0 : s + 1))
                           }}
                           simpleMode

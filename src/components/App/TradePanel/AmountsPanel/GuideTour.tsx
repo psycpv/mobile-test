@@ -105,7 +105,7 @@ export default function GuideTour() {
     setSteps(steps)
     setCurrentStep(0)
     setIsOpen(true)
-  }, [setSteps, balance, isMobile, setCurrentStep, setIsOpen])
+  }, [setSteps, balance, isMobile, setCurrentStep, setIsOpen, isIOS])
 
   return null
 }

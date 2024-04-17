@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import React, { useEffect } from 'react'
 import { useIsOpenPWAPrompt, useSetIsInstalledPWA, useSetIsOpenPWAPrompt } from 'state/user/hooks'
+import './index.css'
 const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), { ssr: false })
 
 function handleBeforeInstallPromptEvent(event: any) {

@@ -22,6 +22,7 @@ import RABBY_ICON_URL from '/public/static/images/wallets/rabby.svg'
 import { Wallet } from 'components/Icons'
 import { ExternalLink } from 'components/Link'
 import { useIsMobile } from 'lib/hooks/useWindowSize'
+import { useIsInstalledPWA } from 'state/user/hooks'
 
 export const Container = styled(Column)`
   background: ${({ theme }) => theme.color1};
@@ -84,6 +85,7 @@ export default function Symbol() {
   const isMobile = useIsMobile()
   const { setIsOpen, setSteps } = useTour()
   const isSideBarVisible = useIsSideBarVisible()
+  const isInstalledPWA = useIsInstalledPWA()
   const theme = useTheme()
 
   const router = useRouter()
@@ -145,7 +147,7 @@ export default function Symbol() {
       },
     ]
 
-    if (isMobile)
+    if (isMobile && !isInstalledPWA)
       steps.push({
         selector: '.tour-step-6',
         content: <Step title="Setup PWA" content="Get our PWA with one click for a faster and smoother experience" />,

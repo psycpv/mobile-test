@@ -2,7 +2,12 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useIsOpenPWAPrompt, useSetIsInstalledPWA, useSetIsOpenPWAPrompt } from 'state/user/hooks'
+import styled from 'styled-components'
 const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), { ssr: false })
+
+const Title = styled.div`
+  display: flex;
+`
 
 function handleBeforeInstallPromptEvent(event: any) {
   event.preventDefault()
@@ -41,10 +46,10 @@ export default function PwaProvider() {
         localStorage.removeItem('iosPwaPrompt')
       }}
       copyTitle={
-        <div>
-          <Image src="/images/192x192_App_Icon.png" alt="app icon" />
+        <Title>
+          <Image src="/images/192x192_App_Icon.png" alt="app icon" width={35} height={35} />
           Add to Home Screen
-        </div>
+        </Title>
       }
     />
   ) : null

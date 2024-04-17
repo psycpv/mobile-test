@@ -2,8 +2,9 @@ import React from 'react'
 import styled, { useTheme } from 'styled-components'
 import MainButton from 'components/Button/MainButton'
 import { useIsMobile } from 'lib/hooks/useWindowSize'
-import { useSetIsInstalledPWA } from 'state/user/hooks'
+import { useSetIsInstalledPWA, useSetIsOpenPWAPrompt } from 'state/user/hooks'
 import { toast } from 'react-toastify'
+import useIsIOS from 'hooks/useIsIOS'
 
 const Container = styled.div<{ isMobile: boolean }>`
   background: ${({ theme }) => theme.pwaBgPink};
@@ -33,21 +34,27 @@ export default function PwaInstallCard() {
   const { pink, darkPink, brilliantLavender } = useTheme()
   const isMobile = useIsMobile()
   const setIsInstalledPWA = useSetIsInstalledPWA()
+  const setIsOpenPWAPrompt = useSetIsOpenPWAPrompt()
+  const isIOS = useIsIOS()
   function handleInstall() {
-    window.deferredprompt
-      .prompt()
-      .then(() => window.deferredprompt.userChoice)
-      .then((choiceResult: any) => {
-        if (choiceResult.outcome === 'accepted') {
-          toast.success('PWA native installation succesful')
-          setIsInstalledPWA(true)
-        } else {
-          toast.error('User opted out by cancelling native installation')
-        }
-      })
-      .catch((err: any) => {
-        alert('Error occurred in the installing process: ' + err)
-      })
+    if (isIOS) {
+      setIsOpenPWAPrompt(true)
+    } else {
+      window.deferredprompt
+        .prompt()
+        .then(() => window.deferredprompt.userChoice)
+        .then((choiceResult: any) => {
+          if (choiceResult.outcome === 'accepted') {
+            toast.success('PWA native installation succesful')
+            setIsInstalledPWA(true)
+          } else {
+            toast.error('User opted out by cancelling native installation')
+          }
+        })
+        .catch((err: any) => {
+          alert('Error occurred in the installing process: ' + err)
+        })
+    }
   }
 
   return (

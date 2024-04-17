@@ -8,8 +8,8 @@ export default function OneSignalProvider({ children }: { children: ReactNode })
     window.OneSignalDeferred = window.OneSignalDeferred || []
     window.OneSignalDeferred.push(function (OneSignal: any) {
       OneSignal.init({
-        appId: '4f412d26-e5f3-44e2-966e-6ea4c2aa88bf',
-        safari_web_id: 'web.onesignal.auto.1f7edc6b-077e-4a04-b244-6d0a0c671761',
+        appId: '19236199-1935-431a-90ea-9e962953cc27',
+        safari_web_id: 'web.onesignal.auto.54cd441e-7f12-4aed-9845-f98eb5c10ecb',
 
         allowLocalhostAsSecureOrigin: true,
         promptOptions: {

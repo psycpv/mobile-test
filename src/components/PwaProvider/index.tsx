@@ -7,6 +7,7 @@ const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), { ssr: false })
 
 const Title = styled.div`
   display: flex;
+  align-items: center;
 `
 
 function handleBeforeInstallPromptEvent(event: any) {
@@ -47,7 +48,7 @@ export default function PwaProvider() {
       }}
       copyTitle={
         <Title>
-          <Image src="/images/192x192_App_Icon.png" alt="app icon" width={35} height={35} />
+          <Image src="/images/192x192_App_Icon.png" alt="app icon" width={40} height={40} />
           Add to Home Screen
         </Title>
       }

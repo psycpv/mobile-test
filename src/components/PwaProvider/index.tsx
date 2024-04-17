@@ -12,10 +12,10 @@ export default function PwaProvider() {
   const setIsOpenPWAPrompt = useSetIsOpenPWAPrompt()
   const isOpenPWAPrompt = useIsOpenPWAPrompt()
   useEffect(() => {
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
     // @ts-ignore: Property 'standalone' does not exist on type 'Navigator'.
     const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches
     setIsInstalledPWA(isStandalone)
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
 
     return function () {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)

@@ -16,7 +16,12 @@ export default function PwaProvider() {
     const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches
     setIsInstalledPWA(isStandalone)
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
-
+    window.addEventListener('appinstalled', () => {
+      // If visible, hide the install promotion
+      alert('is installed')
+      // Log install to analytics
+      console.log('INSTALL: Success')
+    })
     return function () {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPromptEvent)
     }

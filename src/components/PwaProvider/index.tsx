@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { useIsOpenPWAPrompt, useSetIsInstalledPWA, useSetIsOpenPWAPrompt } from 'state/user/hooks'
 const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), { ssr: false })
@@ -39,6 +40,12 @@ export default function PwaProvider() {
         setIsOpenPWAPrompt(false)
         localStorage.removeItem('iosPwaPrompt')
       }}
+      copyTitle={
+        <div>
+          <Image src="/images/192x192_App_Icon.png" alt="app icon" />
+          Add to Home Screen
+        </div>
+      }
     />
   ) : null
 }

@@ -5,7 +5,7 @@ declare module 'react-ios-pwa-prompt' {
     timesToShow?: number
     promptOnVisit?: number
     permanentlyHideOnDismiss?: boolean
-    copyTitle?: string
+    copyTitle?: React.ReactElement
     copyBody?: string
     copyShareButtonLabel?: string
     copyAddHomeButtonLabel?: string

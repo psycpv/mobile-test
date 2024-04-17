@@ -9,6 +9,7 @@ import { ExternalLink } from 'components/Link'
 import Handshake from 'components/Icons/Handshake'
 import styled from 'styled-components'
 import { useIsMobile } from 'lib/hooks/useWindowSize'
+import { useIsInstalledPWA } from 'state/user/hooks'
 
 const Link = styled(ExternalLink)`
   color: ${({ theme }) => theme.almostWhite};
@@ -19,6 +20,7 @@ export default function GuideTour() {
   const { setIsOpen, setSteps, setCurrentStep } = useTour()
   const { balance } = useTradePage()
   const isMobile = useIsMobile()
+  const isInstalledPWA = useIsInstalledPWA()
 
   useEffect(() => {
     if (!setSteps) {
@@ -60,7 +62,7 @@ export default function GuideTour() {
       },
     ]
 
-    if (isMobile)
+    if (isMobile && !isInstalledPWA)
       steps.push({
         selector: '.tour-step-6',
         content: <Step title="Setup PWA" content="Get our PWA with one click for a faster and smoother experience" />,
@@ -71,7 +73,7 @@ export default function GuideTour() {
     setSteps(steps)
     setCurrentStep(0)
     setIsOpen(true)
-  }, [setSteps, balance, isMobile, setCurrentStep, setIsOpen])
+  }, [setSteps, balance, isMobile, setCurrentStep, setIsOpen, isInstalledPWA])
 
   return null
 }

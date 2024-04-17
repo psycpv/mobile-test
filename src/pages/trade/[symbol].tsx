@@ -157,7 +157,7 @@ export default function Symbol() {
 
     setSteps(steps)
     setIsOpen(true)
-  }, [isMobile, setIsOpen, setSteps, theme.almostWhite])
+  }, [isInstalledPWA, isMobile, setIsOpen, setSteps, theme.almostWhite])
 
   return (
     <Container>

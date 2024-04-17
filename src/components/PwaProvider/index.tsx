@@ -22,5 +22,12 @@ export default function PwaProvider() {
     }
   }, [setIsInstalledPWA])
 
-  return isOpenPWAPrompt ? <PWAPrompt onClose={() => setIsOpenPWAPrompt(false)} /> : null
+  return isOpenPWAPrompt ? (
+    <PWAPrompt
+      onClose={() => {
+        setIsOpenPWAPrompt(false)
+        localStorage.removeItem('iosPwaPrompt')
+      }}
+    />
+  ) : null
 }

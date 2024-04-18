@@ -1,11 +1,19 @@
 /* IOS PWA Popup Dialog */
-.iOSPWA-title {
-  color: #0f0f0f;
-}
 
 .iOSPWA-description-copy,
+.iOSPWA-title,
 .iOSPWA-step1-copy,
 .iOSPWA-step2-copy,
 .iOSPWA-step2-icon {
-  color: #131313;
+  color: #131313 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .iOSPWA-description-copy,
+  .iOSPWA-title,
+  .iOSPWA-step1-copy,
+  .iOSPWA-step2-copy,
+  .iOSPWA-step2-icon {
+    color: #fcfcfc !important;
+  }
 }

@@ -39,7 +39,7 @@ export default function PwaProvider() {
       copyTitle={
         <Title>
           <Image src="/images/192x192_App_Icon.png" alt="app icon" width={40} height={40} />
-          <div>Add to Home Screen</div>
+          <div>Install Vibe Trading App</div>
         </Title>
       }
     />

@@ -12,7 +12,6 @@
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/contracts": "^5.7.0",
     "@ethersproject/units": "^5.7.0",
-    "@napi-rs/canvas": "^0.1.44",
     "@react-spring/web": "^9.3.0",
     "@reactour/tour": "^3.6.1",
     "@reduxjs/toolkit": "^1.6.2",

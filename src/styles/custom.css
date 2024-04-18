@@ -16,4 +16,7 @@
   .iOSPWA-step2-icon {
     color: #fcfcfc !important;
   }
+  .iOSPWA-container {
+    background-color: #1d1d1d !important;
+  }
 }

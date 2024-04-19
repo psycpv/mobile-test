@@ -6,7 +6,7 @@ import styled from 'styled-components'
 const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), { ssr: false })
 
 const PWAPromptContainer = styled.div`
-  & > {
+  & div {
     .iOSPWA-description-copy,
     .iOSPWA-title,
     .iOSPWA-step1-copy,

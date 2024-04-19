@@ -33,7 +33,9 @@ const PWAPromptContainer = styled.div`
 const Title = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  & > div {
+    padding-left: 8px;
+  }
 `
 
 function handleBeforeInstallPromptEvent(event: any) {

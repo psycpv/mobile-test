@@ -6,26 +6,24 @@ import styled from 'styled-components'
 const PWAPrompt = dynamic(() => import('react-ios-pwa-prompt'), { ssr: false })
 
 const PWAPromptContainer = styled.div`
-  & div {
-    .iOSPWA-description-copy,
-    .iOSPWA-title,
-    .iOSPWA-step1-copy,
-    .iOSPWA-step2-copy,
-    .iOSPWA-step2-icon {
-      color: #131313 !important;
-    }
+  & .iOSPWA-description-copy,
+  & .iOSPWA-title,
+  & .iOSPWA-step1-copy,
+  & .iOSPWA-step2-copy,
+  & .iOSPWA-step2-icon {
+    color: #131313 !important;
+  }
 
-    @media (prefers-color-scheme: dark) {
-      .iOSPWA-description-copy,
-      .iOSPWA-title,
-      .iOSPWA-step1-copy,
-      .iOSPWA-step2-copy,
-      .iOSPWA-step2-icon {
-        color: #fcfcfc !important;
-      }
-      .iOSPWA-container {
-        background-color: #1d1d1d !important;
-      }
+  @media (prefers-color-scheme: dark) {
+    & .iOSPWA-description-copy,
+    & .iOSPWA-title,
+    & .iOSPWA-step1-copy,
+    & .iOSPWA-step2-copy,
+    & .iOSPWA-step2-icon {
+      color: #fcfcfc !important;
+    }
+    & .iOSPWA-container {
+      background-color: #1d1d1d !important;
     }
   }
 `

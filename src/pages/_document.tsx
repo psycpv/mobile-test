@@ -44,6 +44,7 @@ class MyDocument extends Document {
             <link rel="apple-touch-icon" sizes="192x192" href="/images/192x192_App_Icon.png" />
             <link rel="apple-touch-icon" sizes="512x512" href="/images/512x512_App_Icon.png" />
 
+            <link rel="manifest" href="/manifest.json" />
             <title>Vibe</title>
             <meta
               name="description"
@@ -57,6 +58,7 @@ class MyDocument extends Document {
               href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap"
               rel="stylesheet"
             ></link>
+            <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
           </>
         </Head>
         <body>

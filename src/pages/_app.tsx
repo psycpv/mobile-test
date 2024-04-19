@@ -17,7 +17,6 @@ import AnimatedButton from 'components/Button/MainButton'
 import styled from 'styled-components'
 import 'styles/custom-font.css'
 import { useEffect } from 'react'
-import Head from 'next/head'
 import OneSignalProvider from 'components/OneSignalProvider'
 import PwaProvider from 'components/PwaProvider'
 import useIsIOS from 'hooks/useIsIOS'
@@ -61,130 +60,124 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [])
   return (
-    <>
-      <Head>
-        <link rel="manifest" href="/manifest.json" />
-        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-      </Head>
-      <ReduxProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <OneSignalProvider>
-            <Web3Provider>
-              <ThemeProvider>
-                <TourProvider
-                  steps={[]}
-                  showDots={false}
-                  showBadge={false}
-                  showCloseButton={true}
-                  disableInteraction={true}
-                  disableKeyboardNavigation={true}
-                  styles={{
-                    popover: (base) => ({
-                      ...base,
-                      padding: '10px',
-                      background: '#16182C',
-                      border: '1px solid #8D90B5',
-                      width: '400px',
-                      maxWidth: '400px',
-                      borderRadius: '4px',
-                    }),
-                  }}
-                  components={{
-                    Close: (onClick) => (
-                      <Close
-                        onClick={() => (onClick && onClick.onClick ? onClick.onClick() : null)}
-                        style={{ float: 'right' }}
-                      >
-                        <CloseIcon size={12} />
-                      </Close>
-                    ),
-                  }}
-                  onClickHighlighted={(e, clickProps) => {
-                    clickProps.setIsOpen(false)
-                  }}
-                  onClickMask={(clickProps) => {
-                    //..
-                  }}
-                  prevButton={({ Button, currentStep, stepsLength, setIsOpen, setCurrentStep, steps }) => {
-                    if (
-                      steps &&
-                      (steps[currentStep].selector === '.tour-step-5' || steps[currentStep].selector === '.tour-step-6')
-                    ) {
-                      return
-                    }
+    <ReduxProvider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <OneSignalProvider>
+          <Web3Provider>
+            <ThemeProvider>
+              <TourProvider
+                steps={[]}
+                showDots={false}
+                showBadge={false}
+                showCloseButton={true}
+                disableInteraction={true}
+                disableKeyboardNavigation={true}
+                styles={{
+                  popover: (base) => ({
+                    ...base,
+                    padding: '10px',
+                    background: '#16182C',
+                    border: '1px solid #8D90B5',
+                    width: '400px',
+                    maxWidth: '400px',
+                    borderRadius: '4px',
+                  }),
+                }}
+                components={{
+                  Close: (onClick) => (
+                    <Close
+                      onClick={() => (onClick && onClick.onClick ? onClick.onClick() : null)}
+                      style={{ float: 'right' }}
+                    >
+                      <CloseIcon size={12} />
+                    </Close>
+                  ),
+                }}
+                onClickHighlighted={(e, clickProps) => {
+                  clickProps.setIsOpen(false)
+                }}
+                onClickMask={(clickProps) => {
+                  //..
+                }}
+                prevButton={({ Button, currentStep, stepsLength, setIsOpen, setCurrentStep, steps }) => {
+                  if (
+                    steps &&
+                    (steps[currentStep].selector === '.tour-step-5' || steps[currentStep].selector === '.tour-step-6')
+                  ) {
+                    return
+                  }
 
-                    return (
-                      <div
-                        onClick={() => {
-                          localStorage.setItem('tour-part1', 'done')
-                          localStorage.setItem('tour-part2', 'done')
-                          localStorage.setItem('tour-part3', 'done')
-                          localStorage.setItem('tour-part4', 'done')
-                          if (isMobile) {
-                            setCurrentStep(2)
-                          } else {
-                            setIsOpen(false)
-                          }
-                        }}
-                        style={{
-                          fontWeight: 'bold',
-                          cursor: 'pointer',
-                          color: '#F1F1F1',
-                          position: 'absolute',
-                          left: 'calc(50% - 45px)',
-                          bottom: '9px',
-                          fontSize: '12px',
-                          textDecoration: 'underline',
-                        }}
-                      >
-                        Skip Walkthrough
-                      </div>
-                    )
-                  }}
-                  nextButton={({ Button, currentStep, stepsLength, setIsOpen, setCurrentStep, steps }) => {
-                    const last = currentStep === stepsLength - 1
-                    if (last) {
-                      if (steps && steps[currentStep].selector === '.tour-step-6') {
-                        return <TourPWANextButton setIsOpen={setIsOpen} />
-                      } else {
-                        return (
-                          <ButtonWrapper>
-                            <AnimatedButton onClick={() => setIsOpen(false)} simpleMode customText={'Continue'} />
-                          </ButtonWrapper>
-                        )
-                      }
+                  return (
+                    <div
+                      onClick={() => {
+                        localStorage.setItem('tour-part1', 'done')
+                        localStorage.setItem('tour-part2', 'done')
+                        localStorage.setItem('tour-part3', 'done')
+                        localStorage.setItem('tour-part4', 'done')
+                        if (isMobile) {
+                          setCurrentStep(2)
+                        } else {
+                          setIsOpen(false)
+                        }
+                      }}
+                      style={{
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                        color: '#F1F1F1',
+                        position: 'absolute',
+                        left: 'calc(50% - 45px)',
+                        bottom: '9px',
+                        fontSize: '12px',
+                        textDecoration: 'underline',
+                      }}
+                    >
+                      Skip Walkthrough
+                    </div>
+                  )
+                }}
+                nextButton={({ Button, currentStep, stepsLength, setIsOpen, setCurrentStep, steps }) => {
+                  const last = currentStep === stepsLength - 1
+                  if (last) {
+                    if (steps && steps[currentStep].selector === '.tour-step-6') {
+                      return <TourPWANextButton setIsOpen={setIsOpen} />
+                    } else {
+                      return (
+                        <ButtonWrapper>
+                          <AnimatedButton onClick={() => setIsOpen(false)} simpleMode customText={'Continue'} />
+                        </ButtonWrapper>
+                      )
                     }
-                    return (
-                      <ButtonWrapper>
-                        <AnimatedButton
-                          onClick={() => {
-                            if (steps && steps[currentStep].selector === '.tour-step-2') setIsOpen(false)
-                            setCurrentStep((s) => (s === (steps?.length || 1) - 1 ? 0 : s + 1))
-                          }}
-                          simpleMode
-                          customText={'Continue'}
-                        />
-                      </ButtonWrapper>
-                    )
-                  }}
-                >
-                  <ThemedGlobalStyle />
-                  <ModalProvider backgroundComponent={ModalBackground}>
-                    <BlockNumberProvider>
-                      <Popups />
-                      <Updaters />
-                      <PwaProvider />
-                      <Layout>
-                        <Component {...pageProps} />
-                      </Layout>
-                    </BlockNumberProvider>
-                  </ModalProvider>
-                </TourProvider>
-              </ThemeProvider>
-            </Web3Provider>
-          </OneSignalProvider>
-        </PersistGate>
-      </ReduxProvider>
-    </>
+                  }
+                  return (
+                    <ButtonWrapper>
+                      <AnimatedButton
+                        onClick={() => {
+                          if (steps && steps[currentStep].selector === '.tour-step-2') setIsOpen(false)
+                          setCurrentStep((s) => (s === (steps?.length || 1) - 1 ? 0 : s + 1))
+                        }}
+                        simpleMode
+                        customText={'Continue'}
+                      />
+                    </ButtonWrapper>
+                  )
+                }}
+              >
+                <ThemedGlobalStyle />
+                <ModalProvider backgroundComponent={ModalBackground}>
+                  <BlockNumberProvider>
+                    <Popups />
+                    <Updaters />
+                    <PwaProvider />
+                    <Layout>
+                      <Component {...pageProps} />
+                    </Layout>
+                  </BlockNumberProvider>
+                </ModalProvider>
+              </TourProvider>
+            </ThemeProvider>
+          </Web3Provider>
+        </OneSignalProvider>
+      </PersistGate>
+    </ReduxProvider>
   )
 }

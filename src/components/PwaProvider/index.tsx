@@ -57,7 +57,6 @@ export default function PwaProvider() {
 
   return isOpenPWAPrompt ? (
     <PWAPromptContainer>
-      {' '}
       <PWAPrompt
         onClose={() => {
           setIsOpenPWAPrompt(false)
